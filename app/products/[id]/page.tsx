@@ -11,63 +11,63 @@ export default function ProductDetailPage() {
   const { data } = useProduct(id as string)
   const { addItem } = useCart()
 
-  if (!data) return <div>Loading...</div>
+  if (!data) return (
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '50vh', flexDirection: 'column', gap: '1rem' }}>
+      <div className="skeleton" style={{ width: '40px', height: '40px', borderRadius: '50%' }} />
+      <p style={{ color: 'var(--text-faint)', fontSize: '0.875rem' }}>Loading product...</p>
+    </div>
+  )
 
   return (
-    <div
-      className="
-      max-w-6xl
-      mx-auto
-      grid
-      md:grid-cols-2
-      gap-10
-      bg-white
-      p-8
-      rounded-xl
-      shadow-sm
-      "
-    >
-      <div className="flex justify-center">
-        <Image 
-          src={data.image}
-          alt={data.title}
-          width={320}
-          height={320}
-          className="h-80 object-contain"
+    <div className="card" style={{
+      maxWidth: '56rem', margin: '0 auto',
+      display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem',
+      padding: '2rem', borderRadius: 'var(--radius-xl)',
+    }}>
+      {/* Image */}
+      <div style={{
+        background: '#ffffff', borderRadius: 'var(--radius-lg)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        minHeight: '300px', padding: '2rem',
+      }}>
+        <Image
+          src={data.image} alt={data.title}
+          width={320} height={320}
+          style={{ height: '260px', width: 'auto', objectFit: 'contain' }}
         />
       </div>
 
-      <div>
-        <h1 className="text-2xl font-bold">{data.title}</h1>
+      {/* Info */}
+      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <span className="badge" style={{ marginBottom: '1rem', alignSelf: 'flex-start' }}>
+          {data.category}
+        </span>
 
-        <p className="text-gray-600 mt-4">{data.description}</p>
+        <h1 style={{
+          fontFamily: 'var(--font-heading)',
+          fontSize: '1.5rem', fontWeight: 800,
+          color: 'var(--text-heading)',
+          lineHeight: 1.3, marginBottom: '1rem',
+        }}>
+          {data.title}
+        </h1>
 
-        <p
-          className="
-          mt-6
-          text-3xl
-          font-bold
-          text-(--primary)
-          "
-        >
+        <p style={{ fontSize: '0.9rem', marginBottom: '1.5rem' }}>
+          {data.description}
+        </p>
+
+        <p className="text-gradient" style={{
+          fontFamily: 'var(--font-heading)',
+          fontSize: '2.2rem', fontWeight: 800,
+          marginBottom: '1.5rem',
+        }}>
           ${data.price}
         </p>
 
-        <div className="mt-6">
-          <Button
-            onClick={() =>
-              addItem({
-                id: data.id,
-                title: data.title,
-                price: data.price,
-                image: data.image,
-                quantity: 1,
-              })
-            }
-          >
-            Add to Cart
-          </Button>
-        </div>
+        <Button onClick={() => addItem(data)}>
+          <i className="fa-solid fa-cart-plus"></i>
+          Add to Cart
+        </Button>
       </div>
     </div>
   )

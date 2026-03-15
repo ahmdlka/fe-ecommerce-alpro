@@ -2,18 +2,11 @@
 
 export function ProductCardSkeleton() {
   return (
-    <div
-      className="
-      bg-white
-      rounded-xl
-      border
-      p-4
-      animate-pulse
-      "
-    >
-      <div className="h-40 bg-gray-200 rounded-md mb-3" />
-      <div className="h-4 bg-gray-200 mb-2 rounded" />
-      <div className="h-4 bg-gray-200 w-1/2 rounded" />
+    <div className="card" style={{ pointerEvents: 'none' }}>
+      <div className="skeleton" style={{ height: '160px', marginBottom: '0.75rem' }} />
+      <div className="skeleton" style={{ height: '12px', marginBottom: '0.5rem' }} />
+      <div className="skeleton" style={{ height: '12px', width: '60%', marginBottom: '0.75rem' }} />
+      <div className="skeleton" style={{ height: '16px', width: '35%' }} />
     </div>
   )
 }
