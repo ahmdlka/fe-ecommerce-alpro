@@ -9,6 +9,9 @@
   --primary: #0f52ba;
   --secondary: #89cff0;
   --bg: #f6f7f9;
+
+  --background: linear-gradient(135deg, #89cff0, #0f52ba);
+  --foreground: #111111;
 }
 
 
@@ -21,12 +24,16 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: linear-gradient(135deg, #89cff0, #0f52ba);
     --foreground: #ededed;
   }
 }
 
 body {
   background: var(--background);
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
   font-family: Arial, Helvetica, sans-serif;
 }

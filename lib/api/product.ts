@@ -1,5 +1,5 @@
 import { products } from "@/fakedata/fakeproduct"
-import { Product } from "@/types/product"
+import { Product, Category } from "@/types/product"
 
 export const ProductAPI = {
   getAll: async (): Promise<Product[]> => {
@@ -10,8 +10,13 @@ export const ProductAPI = {
     return products.find((p) => p.id === Number(id))
   },
 
-  getCategories: async (): Promise<string[]> => {
-    return [...new Set(products.map((p) => p.category))]
+  getCategories: async (): Promise<Category[]> => {
+    const uniqueCategoryNames = [...new Set(products.map((p) => p.category))];
+    
+    return uniqueCategoryNames.map((name, index) => ({
+      id: index + 1,
+      name: name
+    }));
   },
 
   getByCategory: async (category: string): Promise<Product[]> => {

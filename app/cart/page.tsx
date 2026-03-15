@@ -11,7 +11,9 @@ export default function CartPage() {
 
       {items.map((item) => (
         <div key={item.id} className="flex justify-between border p-4 mt-2">
-          <div>{item.title}</div>
+          <div>
+            {item.title} (x{item.quantity})
+          </div>
 
           <button onClick={() => removeItem(item.id)}>Remove</button>
         </div>
